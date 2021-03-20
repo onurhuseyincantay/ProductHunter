@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F13691026063D8F006075A1 /* NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F13690F26063D8F006075A1 /* NetworkTarget.swift */; };
+		8F13691526063DC2006075A1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F13691426063DC2006075A1 /* NetworkService.swift */; };
+		8F13691B26064475006075A1 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F13691A26064475006075A1 /* NetworkError.swift */; };
+		8F136924260644A8006075A1 /* ProductAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F136923260644A7006075A1 /* ProductAPIService.swift */; };
 		8FC8794B2606127F00320564 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8794A2606127F00320564 /* AppDelegate.swift */; };
 		8FC8794D2606127F00320564 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8794C2606127F00320564 /* SceneDelegate.swift */; };
 		8FC8794F2606127F00320564 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8794E2606127F00320564 /* ProductsViewController.swift */; };
@@ -23,10 +27,8 @@
 		8FC879B82606183500320564 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC879B72606183500320564 /* ProductDetailView.swift */; };
 		8FC8899D26062C3F00616640 /* ProductTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8899C26062C3E00616640 /* ProductTarget.swift */; };
 		8FC889A626062E8A00616640 /* URL+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC889A526062E8A00616640 /* URL+Additions.swift */; };
-		8FC889AC2606355200616640 /* Hover in Frameworks */ = {isa = PBXBuildFile; productRef = 8FC889AB2606355200616640 /* Hover */; };
 		8FC889BD260637DC00616640 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC889BC260637DC00616640 /* Review.swift */; };
 		8FC889C22606381800616640 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC889C12606381800616640 /* Product.swift */; };
-		8FC889CB260638F000616640 /* NetworkFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC889CA260638F000616640 /* NetworkFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F13690F26063D8F006075A1 /* NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTarget.swift; sourceTree = "<group>"; };
+		8F13691426063DC2006075A1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		8F13691A26064475006075A1 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		8F136923260644A7006075A1 /* ProductAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAPIService.swift; sourceTree = "<group>"; };
 		8FC879472606127F00320564 /* ProductHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FC8794A2606127F00320564 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FC8794C2606127F00320564 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,7 +76,6 @@
 		8FC889A526062E8A00616640 /* URL+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Additions.swift"; sourceTree = "<group>"; };
 		8FC889BC260637DC00616640 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		8FC889C12606381800616640 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		8FC889CA260638F000616640 /* NetworkFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +83,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FC889AC2606355200616640 /* Hover in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +103,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F13692226064491006075A1 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8F136923260644A7006075A1 /* ProductAPIService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		8FC8793E2606127F00320564 = {
 			isa = PBXGroup;
 			children = (
@@ -201,9 +213,12 @@
 		8FC8899B26062C1E00616640 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
+				8F13692226064491006075A1 /* API */,
 				8FC889C9260638DD00616640 /* Target */,
 				8FC889BB2606377C00616640 /* Models */,
-				8FC889CA260638F000616640 /* NetworkFactory.swift */,
+				8F13690F26063D8F006075A1 /* NetworkTarget.swift */,
+				8F13691426063DC2006075A1 /* NetworkService.swift */,
+				8F13691A26064475006075A1 /* NetworkError.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -250,7 +265,6 @@
 			);
 			name = ProductHunter;
 			packageProductDependencies = (
-				8FC889AB2606355200616640 /* Hover */,
 			);
 			productName = ProductHunter;
 			productReference = 8FC879472606127F00320564 /* ProductHunter.app */;
@@ -324,7 +338,6 @@
 			);
 			mainGroup = 8FC8793E2606127F00320564;
 			packageReferences = (
-				8FC889AA2606355100616640 /* XCRemoteSwiftPackageReference "Hover" */,
 			);
 			productRefGroup = 8FC879482606127F00320564 /* Products */;
 			projectDirPath = "";
@@ -369,21 +382,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FC8794F2606127F00320564 /* ProductsViewController.swift in Sources */,
-				8FC889CB260638F000616640 /* NetworkFactory.swift in Sources */,
 				8FC889BD260637DC00616640 /* Review.swift in Sources */,
 				8FC889C22606381800616640 /* Product.swift in Sources */,
 				8FC8794B2606127F00320564 /* AppDelegate.swift in Sources */,
 				8FC879AE2606181500320564 /* ProductDetailViewController.swift in Sources */,
+				8F13691526063DC2006075A1 /* NetworkService.swift in Sources */,
 				8FC879B82606183500320564 /* ProductDetailView.swift in Sources */,
 				8FC879B32606182700320564 /* ProductDetailViewModel.swift in Sources */,
 				8FC8798A2606134A00320564 /* ProductsViewModel.swift in Sources */,
 				8FC8794D2606127F00320564 /* SceneDelegate.swift in Sources */,
 				8FC879A4260617A200320564 /* ViewControllerProtocol.swift in Sources */,
 				8FC8799F260615C600320564 /* ViewModel.swift in Sources */,
+				8F136924260644A8006075A1 /* ProductAPIService.swift in Sources */,
 				8FC8798F2606140500320564 /* ProductsView.swift in Sources */,
 				8FC889A626062E8A00616640 /* URL+Additions.swift in Sources */,
 				8FC8899D26062C3F00616640 /* ProductTarget.swift in Sources */,
+				8F13691B26064475006075A1 /* NetworkError.swift in Sources */,
 				8FC879A9260617BA00320564 /* BaseView.swift in Sources */,
+				8F13691026063D8F006075A1 /* NetworkTarget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,25 +723,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		8FC889AA2606355100616640 /* XCRemoteSwiftPackageReference "Hover" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onurhuseyincantay/Hover";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.8;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		8FC889AB2606355200616640 /* Hover */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8FC889AA2606355100616640 /* XCRemoteSwiftPackageReference "Hover" */;
-			productName = Hover;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8FC8793F2606127F00320564 /* Project object */;
 }

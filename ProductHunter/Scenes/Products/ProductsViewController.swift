@@ -33,7 +33,6 @@ final class ProductsViewController: UIViewController, ViewControllerProtocol {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    viewModel.fetchAllProducts()
   }
 }
 
