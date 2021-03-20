@@ -19,8 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     guard let windowScene = (scene as? UIWindowScene) else { return }
     window = UIWindow(frame: windowScene.coordinateSpace.bounds)
     window?.windowScene = windowScene
-    window?.rootViewController = ProductsViewController(view: ProductsView(), viewModel: ProductsViewModel(productAPIService: ProductApiService()))
-    window?.backgroundColor = .orange
+    window?.rootViewController = UINavigationController(rootViewController: ProductsViewController(view: ProductsView(), viewModel: ProductsViewModel(productAPIService: ProductApiService())))
     window?.makeKeyAndVisible()
   }
 

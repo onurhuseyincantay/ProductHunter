@@ -7,13 +7,16 @@
 
 import UIKit
 
+protocol ProductsViewModelDelegate: UIViewController {
+  func didGetProducts(dataSource: [ProductTableViewCellModel])
+}
 
-final class ProductsViewController: UIViewController, ViewControllerProtocol {
+final class ProductsViewController: BaseViewController, ViewControllerProtocol {
   typealias ViewModelType = ProductsViewModel
   typealias ViewType = ProductsView
   
   private let mainView: ProductsView
-  private let viewModel: ProductsViewModel
+  private let viewModel: ProductsViewModelProtocol
   
   init(view: ProductsView, viewModel: ProductsViewModel) {
     self.mainView = view
@@ -28,16 +31,41 @@ final class ProductsViewController: UIViewController, ViewControllerProtocol {
   }
   
   override func loadView() {
+    mainView.delegate = self
     view = mainView
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    viewModel.fetchAllProducts()
+  }
+}
+
+extension ProductsViewController: ProductsViewDelegate {
+  
+  func didSelectItem(at indexPath: IndexPath) {
+    let product = viewModel.selectItem(at: indexPath)
+    let viewController = ProductDetailViewController(view: ProductDetailView(), viewModel: ProductDetailViewModel(product: product))
+    navigationController?.pushViewController(viewController, animated: true)
+  }
+  
+  
+  func searchBarSearchButtonClicked(_ text: String?) {
+    mainView.provideDataSource(viewModel.filterProduct(with: text))
+  }
+  
+  func searchBarCancelButtonClicked() {
+    mainView.provideDataSource(viewModel.filterProduct(with: nil))
   }
 }
 
 // MARK: - ProductsViewModelDelegate
 extension ProductsViewController: ProductsViewModelDelegate {
-
+  
+  func didGetProducts(dataSource: [ProductTableViewCellModel]) {
+    DispatchQueue.main.async {
+      self.mainView.provideDataSource(dataSource)
+    }
+  }
 }
 

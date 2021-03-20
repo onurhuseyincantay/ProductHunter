@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProductDetailViewController: UIViewController, ViewControllerProtocol {
+final class ProductDetailViewController: BaseViewController, ViewControllerProtocol {
   typealias ViewType = ProductDetailView
   typealias ViewModelType = ProductDetailViewModel
   

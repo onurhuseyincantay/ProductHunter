@@ -14,15 +14,13 @@ struct Product: Codable {
     let currency: String
     let price: Int
     let id: String?
-    let name: String?
-    let productDescription: String?
-    let imgURL: String?
+    var name: String?
+    var description: String?
+    let imgURL: URL?
     let reviews: [Review]
-
+    
     enum CodingKeys: String, CodingKey {
-        case currency, price, id, name
-        case productDescription = "description"
+        case currency, price, id, name, description, reviews
         case imgURL = "imgUrl"
-        case reviews
     }
 }
