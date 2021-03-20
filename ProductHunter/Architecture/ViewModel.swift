@@ -7,11 +7,7 @@
 
 import UIKit
 
-protocol ViewModel {
-  associatedtype ViewControllerType: UIViewController
-  
-  var delegate: ViewControllerType? { get set }
-}
+protocol ViewModel { }
 
 
 

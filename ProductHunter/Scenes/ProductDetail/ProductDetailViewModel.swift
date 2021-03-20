@@ -13,7 +13,5 @@ protocol ProductDetailViewModelDelegate: UIViewController {
 }
 
 final class ProductDetailViewModel: ViewModel {
-  typealias ViewControllerType = ProductDetailViewController
-  
-  weak var delegate: ViewControllerType?
+  weak var delegate: ProductDetailViewModelDelegate?
 }

@@ -30,6 +30,11 @@ final class ProductsViewController: UIViewController, ViewControllerProtocol {
   override func loadView() {
     view = mainView
   }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    viewModel.fetchAllProducts()
+  }
 }
 
 // MARK: - ProductsViewModelDelegate
