@@ -5,10 +5,13 @@
 //  Created by Onur Hüseyin Çantay on 20.03.2021.
 //
 
-import Foundation
+import UIKit
 
-// TODO: Add Generic functionality here if you see repepetitive behavior
-protocol ViewModel { }
+protocol ViewModel {
+  associatedtype ViewControllerType: UIViewController
+  
+  var delegate: ViewControllerType? { get set }
+}
 
 
 

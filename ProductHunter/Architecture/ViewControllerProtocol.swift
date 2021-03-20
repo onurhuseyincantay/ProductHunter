@@ -5,9 +5,9 @@
 //  Created by Onur Hüseyin Çantay on 20.03.2021.
 //
 
-import Foundation
+import UIKit
 
-protocol ViewControllerProtocol {
+protocol ViewControllerProtocol: UIViewController {
   associatedtype ViewModelType: ViewModel
   associatedtype ViewType: BaseView
   

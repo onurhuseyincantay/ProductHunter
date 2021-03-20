@@ -19,6 +19,7 @@ final class ProductsViewController: UIViewController, ViewControllerProtocol {
     self.mainView = view
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
+    viewModel.delegate = self
   }
   
   @available(*, unavailable)
@@ -29,5 +30,10 @@ final class ProductsViewController: UIViewController, ViewControllerProtocol {
   override func loadView() {
     view = mainView
   }
+}
+
+// MARK: - ProductsViewModelDelegate
+extension ProductsViewController: ProductsViewModelDelegate {
+
 }
 

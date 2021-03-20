@@ -5,8 +5,12 @@
 //  Created by Onur Hüseyin Çantay on 20.03.2021.
 //
 
-import Foundation
+import UIKit
+
+protocol ProductsViewModelDelegate: UIViewController {
+  
+}
 
 final class ProductsViewModel: ViewModel {
-  
+  weak var delegate: ProductsViewModelDelegate?
 }
