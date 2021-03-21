@@ -17,7 +17,8 @@ final class ProductDetailHeaderView: BaseView {
   private enum ViewTraits {
     static let defaultPadding: CGFloat = 16
     static let contentPadding: CGFloat = 8
-    static let ratingViewHeight: CGFloat = 44
+    static let ratingViewHeight: CGFloat = 32
+    static let ratingViewWidthMultiplier: CGFloat = 0.45
   }
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -123,7 +124,7 @@ private extension ProductDetailHeaderView {
       ratingView.leadingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor, constant: ViewTraits.contentPadding),
       ratingView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -ViewTraits.defaultPadding),
       ratingView.heightAnchor.constraint(equalToConstant: ViewTraits.ratingViewHeight),
-      ratingView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.33),
+      ratingView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: ViewTraits.ratingViewWidthMultiplier),
       ratingView.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor)
     ])
   }

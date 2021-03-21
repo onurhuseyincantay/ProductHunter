@@ -32,8 +32,6 @@ final class ReviewTableViewCell: UITableViewCell {
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
-  
 }
 
 // MARK: - Public
@@ -62,6 +60,8 @@ private extension ReviewTableViewCell {
   
   func setupContainerView() {
     containerView = UIView()
+    containerView.clipsToBounds = true
+    contentView.layer.cornerRadius = 5
     containerView.layer.borderWidth = 1
     containerView.layer.borderColor = UIColor.white.cgColor
   }

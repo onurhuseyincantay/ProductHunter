@@ -15,6 +15,9 @@ final class ProductDetailView: BaseView {
   weak var delegate: ProductDetailViewDelegate?
   var reviewDataSource: ReviewTableViewDataSource = []
   
+  var stickyHeaderIsVisible: Bool { ViewTraits.stickyHeaderHeight == stickyHeaderBottomConstraint.constant }
+  
+  private var stickyHeaderView: StickyReviewHeaderView!
   private var productImageView: UIImageView!
   private var addReviewView: AddReviewView?
   private var tableView: UITableView!
@@ -22,10 +25,14 @@ final class ProductDetailView: BaseView {
   private var backButton: UIButton!
   
   
+  private var stickyHeaderTopConstraint: NSLayoutConstraint!
+  private var stickyHeaderBottomConstraint: NSLayoutConstraint!
+  
   private enum ViewTraits {
     static let productImageViewMinimumHeight: CGFloat = 260
     static let defaultPadding: CGFloat = 16
     static let backButtonWidthHeight: CGFloat = 24
+    static let stickyHeaderHeight: CGFloat = backButtonWidthHeight + defaultPadding * 2.5
   }
   
   override init(frame: CGRect) {
@@ -45,10 +52,12 @@ extension ProductDetailView {
       return
     }
     productImageView.setCachedImage(from: url, placeholder: AssetHelper.productPlaceHolderImage, isTemplate: false)
+    stickyHeaderView.setText(model.name)
   }
   
   func provideDataSource(_ dataSource: ReviewTableViewDataSource) {
     reviewDataSource = dataSource
+    tableView.reloadData()
   }
 }
 
@@ -93,6 +102,14 @@ extension ProductDetailView: UITableViewDelegate {
       return productDetailHeaderView
     }
   }
+  
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let isVisible = checkIfHeaderViewRectIsVisible(with: scrollView)
+    guard isVisible == stickyHeaderIsVisible else {
+      return
+    }
+    animateStickyHeader(isExpanding: !isVisible)
+  }
 }
 
 // MARK: - Selectors
@@ -112,6 +129,7 @@ private extension ProductDetailView {
     setupTableView()
     setupProductImageView()
     setupProductDetailHeaderView()
+    setupStickyHeaderView()
     setupBackButton()
   }
   
@@ -127,6 +145,10 @@ private extension ProductDetailView {
     
   }
   
+  func setupStickyHeaderView() {
+    stickyHeaderView = StickyReviewHeaderView()
+  }
+  
   func setupTableView() {
     tableView = UITableView(frame: .zero, style: .insetGrouped)
     tableView.dataSource = self
@@ -134,6 +156,7 @@ private extension ProductDetailView {
     tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
     tableView.rowHeight = UITableView.automaticDimension
     tableView.separatorStyle = .none
+    tableView.bounces = false
     tableView.register(ReviewTableViewCell.self, forCellReuseIdentifier: ReviewTableViewCell.identifier)
   }
   
@@ -143,6 +166,17 @@ private extension ProductDetailView {
     backButton.tintColor = .black
     backButton.addTarget(self, action: #selector(didPressBack), for: .touchUpInside)
   }
+  
+  func checkIfHeaderViewRectIsVisible(with scrollView: UIScrollView) -> Bool {
+    let rect = CGRect(origin: .zero, size: .init(width: stickyHeaderView.frame.width, height: ViewTraits.stickyHeaderHeight))
+    return scrollView.bounds.intersects(rect)
+  }
+  
+  func animateStickyHeader(isExpanding: Bool) {
+    stickyHeaderBottomConstraint.constant = isExpanding ? ViewTraits.stickyHeaderHeight : 0
+    let option: UIView.AnimationOptions = isExpanding ? .curveEaseIn : .curveEaseOut
+    UIView.animate(withDuration: 0.25, delay: 0, options: option, animations: layoutIfNeeded)
+  }
 }
 
 
@@ -151,11 +185,19 @@ private extension ProductDetailView {
   
   func addSubviews()  {
     addSubviewWC(tableView)
+    addSubviewWC(stickyHeaderView)
     addSubviewWC(backButton)
   }
   
   func setupConstraints() {
+    stickyHeaderBottomConstraint = stickyHeaderView.bottomAnchor.constraint(equalTo: topAnchor)
     NSLayoutConstraint.activate([
+      
+      stickyHeaderView.heightAnchor.constraint(equalToConstant: ViewTraits.stickyHeaderHeight),
+      stickyHeaderView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+      stickyHeaderView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+      stickyHeaderBottomConstraint,
+      
       backButton.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: ViewTraits.defaultPadding),
       backButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: ViewTraits.defaultPadding),
       backButton.widthAnchor.constraint(equalToConstant: ViewTraits.backButtonWidthHeight),
