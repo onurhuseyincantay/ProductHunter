@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ProductDetailViewModelDelegate: UIViewController {
+  
+}
+
 final class ProductDetailViewController: BaseViewController, ViewControllerProtocol {
   typealias ViewType = ProductDetailView
   typealias ViewModelType = ProductDetailViewModel
@@ -25,9 +29,43 @@ final class ProductDetailViewController: BaseViewController, ViewControllerProto
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+  
+  override func loadView() {
+    mainView.delegate = self
+    view = mainView
+  }
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    provideDataModelForHeader()
+    provideDataSource()
+  }
 }
 
 // MARK: - ProductDetailViewModelDelegate
 extension ProductDetailViewController: ProductDetailViewModelDelegate {
   
+}
+
+// MARK: - ProductDetailViewDelegate
+extension ProductDetailViewController: ProductDetailViewDelegate {
+  
+  func didPressBack() {
+    navigationController?.popViewController(animated: true)
+  }
+}
+
+
+private extension ProductDetailViewController {
+  
+  func provideDataModelForHeader() {
+    let model = viewModel.getHeaderModel()
+    let imageUrl = viewModel.getProductImageUrl()
+    mainView.provideDataModelForHeader(model, imageUrl: imageUrl)
+  }
+  
+  func provideDataSource() {
+    let dataSource = viewModel.getReviews()
+    mainView.provideDataSource(dataSource)
+  }
 }

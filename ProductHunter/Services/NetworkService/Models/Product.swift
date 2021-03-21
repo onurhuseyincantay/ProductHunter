@@ -14,8 +14,8 @@ struct Product: Codable {
     let currency: String
     let price: Int
     let id: String?
-    var name: String?
-    var description: String?
+    var name: String
+    var description: String
     let imgURL: URL?
     let reviews: [Review]
     

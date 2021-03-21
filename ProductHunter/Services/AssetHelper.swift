@@ -9,4 +9,5 @@ import UIKit
 
 enum AssetHelper {
   static let productPlaceHolderImage = UIImage(named: "productPlaceholder")!
+  static let backButtonImage = UIImage(named: "backIcon")
 }
