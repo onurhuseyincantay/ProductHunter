@@ -50,7 +50,7 @@ extension NetworkService {
         } else {
           completion(.failure(.unsucessfulStatusCode(code: response.statusCode)))
         }
-      }
+      }.resume()
     }
   }
 }

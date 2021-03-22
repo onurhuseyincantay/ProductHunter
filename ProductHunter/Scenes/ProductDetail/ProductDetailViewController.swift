@@ -9,6 +9,7 @@ import UIKit
 
 protocol ProductDetailViewModelDelegate: UIViewController {
   func didUpdateProduct(with dataSource: ReviewTableViewDataSource, headerModel: ProductDetailHeaderDataModel, imageUrl: URL?)
+  func didRecieveAddReviewResponse(isSuccessfull: Bool)
 }
 
 final class ProductDetailViewController: BaseViewController, ViewControllerProtocol {
@@ -43,6 +44,11 @@ final class ProductDetailViewController: BaseViewController, ViewControllerProto
 
 // MARK: - ProductDetailViewModelDelegate
 extension ProductDetailViewController: ProductDetailViewModelDelegate {
+ 
+  func didRecieveAddReviewResponse(isSuccessfull: Bool) {
+    showAlert(isSuccessfull: isSuccessfull)
+  }
+  
   
   func didUpdateProduct(with dataSource: ReviewTableViewDataSource, headerModel: ProductDetailHeaderDataModel, imageUrl: URL?) {
     mainView.prepareView(dataSource, headerModel: headerModel, imageUrl: imageUrl)
@@ -51,12 +57,22 @@ extension ProductDetailViewController: ProductDetailViewModelDelegate {
 
 // MARK: - ProductDetailViewDelegate
 extension ProductDetailViewController: ProductDetailViewDelegate {
+  
   func didSendReview(reviewText: String, rating: Int) {
-    // TODO
+    viewModel.sendReview(reviewText: reviewText, rating: rating)
   }
-  
-  
+ 
   func didPressBack() {
     navigationController?.popViewController(animated: true)
+  }
+  
+  func showAlert(isSuccessfull: Bool) {
+    DispatchQueue.main.async {
+      let title = "Add Review"
+      let description = isSuccessfull ? "Review Successfully Submitted" : "Ooops something went wrong :("
+      let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
+      alert.addAction(.init(title: "OK", style: .destructive))
+      self.present(alert, animated: true)
+    }
   }
 }

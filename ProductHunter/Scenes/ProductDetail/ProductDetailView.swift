@@ -115,7 +115,7 @@ extension ProductDetailView: UITableViewDelegate {
 extension ProductDetailView: AddReviewViewDelegate {
   
   func didSendReview(reviewText: String, rating: Int) {
-    
+    delegate?.didSendReview(reviewText: reviewText, rating: rating)
   }
   
   
@@ -195,12 +195,15 @@ private extension ProductDetailView {
   
   func animateStickyHeader(isExpanding: Bool) {
     stickyHeaderBottomConstraint.constant = isExpanding ? ViewTraits.stickyHeaderHeight : 0
-    let option: UIView.AnimationOptions = isExpanding ? .curveEaseIn : .curveEaseOut
-    UIView.animate(withDuration: 0.25, delay: 0, options: option, animations: layoutIfNeeded)
+    animate(isExpanding)
   }
   
   func animateAddReview(isExpanding: Bool) {
     addReviewViewTopConstraint.constant = isExpanding ? -(AddReviewView.totalContainerHeigt) : -AddReviewView.textViewTopPadding
+    animate(isExpanding)
+  }
+  
+  func animate(_ isExpanding: Bool) {
     let option: UIView.AnimationOptions = isExpanding ? .curveEaseIn : .curveEaseOut
     UIView.animate(withDuration: 0.25, delay: 0, options: option, animations: layoutIfNeeded)
   }

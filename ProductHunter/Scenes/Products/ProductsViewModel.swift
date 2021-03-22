@@ -65,7 +65,12 @@ extension ProductsViewModel: ProductsViewModelProtocol {
 private extension ProductsViewModel {
   
   func generateProductTableViewCellModel(from dataSource: ProductList) -> [ProductTableViewCellModel] {
-    dataSource.map { ProductTableViewCellModel(imageUrl: $0.imgURL, title: $0.name, description: $0.description, price: "\($0.currency) \($0.price)") }
+    dataSource.map {
+      let name = "Product Name: \($0.name)"
+      let price = "\($0.currency.isEmpty ? "$" : $0.currency) \($0.price)"
+      let description = "Description: \($0.description)"
+      return ProductTableViewCellModel(imageUrl: $0.imgURL, title: name, description: description, price: price)
+    }
   }
   
   func cleanDataSource() {

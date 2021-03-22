@@ -47,6 +47,8 @@
 		8FC889A626062E8A00616640 /* URL+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC889A526062E8A00616640 /* URL+Additions.swift */; };
 		8FC889BD260637DC00616640 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC889BC260637DC00616640 /* Review.swift */; };
 		8FC889C22606381800616640 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC889C12606381800616640 /* Product.swift */; };
+		8FD0973826093DF7006C3D8D /* ReviewTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD0973726093DF7006C3D8D /* ReviewTarget.swift */; };
+		8FD0973D26093F9D006C3D8D /* ReviewAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD0973C26093F9D006C3D8D /* ReviewAPIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		8FC889A526062E8A00616640 /* URL+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Additions.swift"; sourceTree = "<group>"; };
 		8FC889BC260637DC00616640 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		8FC889C12606381800616640 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		8FD0973726093DF7006C3D8D /* ReviewTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTarget.swift; sourceTree = "<group>"; };
+		8FD0973C26093F9D006C3D8D /* ReviewAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				8F136923260644A7006075A1 /* ProductAPIService.swift */,
+				8FD0973C26093F9D006C3D8D /* ReviewAPIService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -159,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				8F13693A26064F55006075A1 /* Cells */,
-				8FC8798E2606140500320564 /* ProductsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -274,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				8F13693926064F4C006075A1 /* Views */,
+				8FC8798E2606140500320564 /* ProductsView.swift */,
 				8FC8794E2606127F00320564 /* ProductsViewController.swift */,
 				8FC879892606134A00320564 /* ProductsViewModel.swift */,
 			);
@@ -362,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				8FC8899C26062C3E00616640 /* ProductTarget.swift */,
+				8FD0973726093DF7006C3D8D /* ReviewTarget.swift */,
 			);
 			path = Target;
 			sourceTree = "<group>";
@@ -506,6 +512,7 @@
 				8FC889BD260637DC00616640 /* Review.swift in Sources */,
 				8FC889C22606381800616640 /* Product.swift in Sources */,
 				8F13693526064EC8006075A1 /* Identifiable.swift in Sources */,
+				8FD0973D26093F9D006C3D8D /* ReviewAPIService.swift in Sources */,
 				8FC8794B2606127F00320564 /* AppDelegate.swift in Sources */,
 				8FC879AE2606181500320564 /* ProductDetailViewController.swift in Sources */,
 				8F16712326092E8900B9392B /* CGFloat+Additions.swift in Sources */,
@@ -525,6 +532,7 @@
 				8FC879A4260617A200320564 /* ViewControllerProtocol.swift in Sources */,
 				8FC8799F260615C600320564 /* ViewModel.swift in Sources */,
 				8F8D2DF3260753A9006B2E47 /* ReviewTableViewCellDataModel.swift in Sources */,
+				8FD0973826093DF7006C3D8D /* ReviewTarget.swift in Sources */,
 				8F8D2DD526072DA5006B2E47 /* ProductDetailHeaderView.swift in Sources */,
 				8F136924260644A8006075A1 /* ProductAPIService.swift in Sources */,
 				8FC8798F2606140500320564 /* ProductsView.swift in Sources */,
