@@ -8,7 +8,14 @@
 import UIKit
 
 protocol ProductDetailViewModelProtocol: ViewModel {
+  
+  /// Updates current product if needed and calls ´didUpdateProduct´
   func getProduct()
+  
+  /// Sends a Review request and calls ´didRecieveAddReviewResponse´
+  /// - Parameters:
+  ///   - reviewText: description of the Review
+  ///   - rating: rating amount of product
   func sendReview(reviewText: String, rating: Int)
 }
 

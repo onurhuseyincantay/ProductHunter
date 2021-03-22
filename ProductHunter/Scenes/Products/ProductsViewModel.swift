@@ -8,8 +8,15 @@
 import UIKit
 
 protocol ProductsViewModelProtocol: ViewModel {
+  /// Fetches All Products
   func fetchAllProducts()
+
+  /// Filters Products based on id
+  /// - Parameter id: id to be filter parameter
   func filterProduct(with id: String?) -> [ProductTableViewCellModel]
+  
+  /// Selects an item from Datasource
+  /// - Parameter indexPath: indexPath of  Item
   func selectItem(at indexPath: IndexPath) -> Product
 }
 

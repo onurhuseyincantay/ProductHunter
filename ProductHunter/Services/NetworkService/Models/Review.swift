@@ -18,8 +18,6 @@ struct Review: Codable {
     case productID = "productId"
     case locale, rating, text
   }
-  
-
 }
 
 // MARK: - Equatable
@@ -31,7 +29,5 @@ extension Review: Equatable {
   }
 }
 
-enum Locale: String, Codable {
-  case enUS = "en-US"
-}
+
 

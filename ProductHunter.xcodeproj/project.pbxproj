@@ -54,6 +54,7 @@
 		8FD0976D26095441006C3D8D /* ProductDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD0976C26095441006C3D8D /* ProductDetailViewModelTests.swift */; };
 		8FD0977126095640006C3D8D /* ReviewAPIServiceSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD0977026095640006C3D8D /* ReviewAPIServiceSpy.swift */; };
 		8FD0977526095665006C3D8D /* ProductDetailViewModelDelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD0977426095665006C3D8D /* ProductDetailViewModelDelegateSpy.swift */; };
+		8FD097802609646C006C3D8D /* Locale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD0977F2609646C006C3D8D /* Locale.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		8FD0976C26095441006C3D8D /* ProductDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModelTests.swift; sourceTree = "<group>"; };
 		8FD0977026095640006C3D8D /* ReviewAPIServiceSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewAPIServiceSpy.swift; sourceTree = "<group>"; };
 		8FD0977426095665006C3D8D /* ProductDetailViewModelDelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModelDelegateSpy.swift; sourceTree = "<group>"; };
+		8FD0977F2609646C006C3D8D /* Locale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +356,7 @@
 			children = (
 				8FC889BC260637DC00616640 /* Review.swift */,
 				8FC889C12606381800616640 /* Product.swift */,
+				8FD0977F2609646C006C3D8D /* Locale.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				8FC879B32606182700320564 /* ProductDetailViewModel.swift in Sources */,
 				8F7D2A30260673F4009DBEE2 /* BaseViewController.swift in Sources */,
 				8F27BA5A260656C9002859EC /* AssetHelper.swift in Sources */,
+				8FD097802609646C006C3D8D /* Locale.swift in Sources */,
 				8FC8798A2606134A00320564 /* ProductsViewModel.swift in Sources */,
 				8FC8794D2606127F00320564 /* SceneDelegate.swift in Sources */,
 				8F2165772607246F0071AD88 /* AddReviewView.swift in Sources */,

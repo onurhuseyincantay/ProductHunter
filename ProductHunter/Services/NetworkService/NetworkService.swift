@@ -9,8 +9,13 @@ import Foundation
 
 class NetworkService<T: NetworkTarget> { }
 
+// MARK: - Public
 extension NetworkService {
   
+  /// Makes a request for a Decodable Response
+  /// - Parameters:
+  ///   - target: TargetType to be targeted
+  ///   - completion: Result with Success(Expected Decodable Object Type) or Failure(NetworkError)
   func request<D: Decodable>(target: T, completion: @escaping (Result<D, NetworkError>) -> Void) {
     DispatchQueue.global(qos: .userInitiated).async {
       let request = self.prepareRequest(from: target)
@@ -33,6 +38,10 @@ extension NetworkService {
     }
   }
   
+  /// Makes a request
+  /// - Parameters:
+  ///   - target: TargetType to be targeted
+  ///   - completion: Result with Success(Void) or Failure(NetworkError)
   func requestPlain(target: T, completion: @escaping (Result<Void, NetworkError>) -> Void) {
     DispatchQueue.global(qos: .userInitiated).async {
       let request = self.prepareRequest(from: target)
@@ -55,9 +64,12 @@ extension NetworkService {
   }
 }
 
-
+// MARK: - Private
 private extension NetworkService {
   
+  /// Prepares request  from TargetType
+  /// - Parameter target: TargetType to be prepared
+  /// - Returns: Prepared Request
   func prepareRequest(from target: T) -> URLRequest {
     var request: URLRequest!
     let pathAppended = target.baseURL.appendingPathComponent(target.path)
