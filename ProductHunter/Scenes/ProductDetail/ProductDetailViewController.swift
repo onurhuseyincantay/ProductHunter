@@ -51,6 +51,10 @@ extension ProductDetailViewController: ProductDetailViewModelDelegate {
 
 // MARK: - ProductDetailViewDelegate
 extension ProductDetailViewController: ProductDetailViewDelegate {
+  func didSendReview(reviewText: String, rating: Int) {
+    // TODO
+  }
+  
   
   func didPressBack() {
     navigationController?.popViewController(animated: true)

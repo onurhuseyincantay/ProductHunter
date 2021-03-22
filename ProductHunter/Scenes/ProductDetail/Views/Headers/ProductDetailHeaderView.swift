@@ -80,6 +80,7 @@ private extension ProductDetailHeaderView {
   
   func setupRatingView() {
     ratingView = RatingView()
+    ratingView.isUserInteractionEnabled = false
   }
 }
 

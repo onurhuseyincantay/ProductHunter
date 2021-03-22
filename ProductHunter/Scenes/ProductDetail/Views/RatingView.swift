@@ -11,12 +11,6 @@ final class RatingView: BaseView {
   private var stackView: UIStackView!
   private var starButtons: [UIButton]!
   
-  var isButtonStackViewSelectable: Bool = false {
-    didSet {
-      stackView.isUserInteractionEnabled = isButtonStackViewSelectable
-    }
-  }
-  
   private enum ViewTraits {
     static let totalStarButtonCount: Int = 5
   }
@@ -39,6 +33,14 @@ extension RatingView {
       starButtons[range.upperBound - 1].setImage(AssetHelper.halfFilledStarImage, for: .normal)
     }
     setTintColor(for: range.upperBound)
+  }
+  
+  func clearRatings() {
+    starButtons.forEach { $0.isSelected = false }
+  }
+  
+  func getRatingAmount() -> Int {
+    starButtons.filter { $0.isSelected }.count
   }
 }
 
@@ -64,7 +66,6 @@ private extension RatingView {
     stackView.alignment = .fill
     stackView.axis = .horizontal
     stackView.distribution = .fillEqually
-    stackView.isUserInteractionEnabled = isButtonStackViewSelectable
   }
   
   func setupStarButtons() {
@@ -78,10 +79,12 @@ private extension RatingView {
   
   func setupStarButton() -> UIButton {
     let button = UIButton()
+    button.contentMode = .scaleAspectFit
     button.setImage(AssetHelper.emptyStarImage, for: .normal)
     button.setImage(AssetHelper.filledStarImage, for: .selected)
+    button.imageView?.contentMode = .scaleAspectFit
     button.addTarget(self, action: #selector(didSelectButton), for: .touchUpInside)
-    button.tintColor = ColorHelper.backgroundWhite
+    button.tintColor = RatingColorType.normal.getBackgroundColor()
     return button
   }
   
@@ -123,28 +126,4 @@ private extension RatingView {
       stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
     ])
   }
-}
-
-extension CGFloat {
-  
-  func getRangeAndIsHalfValue() -> (range: Range<Int>, isHalfValue: Bool) {
-    let nearest: CGFloat = 0.5
-    let rounded = self.round(nearest: nearest)
-    let hasHalf = self - rounded == nearest
-    
-    if hasHalf {
-      return ((0..<Int(floor(self))), hasHalf)
-    } else {
-      return ((0..<Int(ceil(self))), hasHalf)
-    }
-  }
-}
-
-
-extension CGFloat {
-    func round(nearest: CGFloat) -> CGFloat {
-        let n = 1/nearest
-        let numberToRound = self * n
-        return numberToRound.rounded() / n
-    }
 }

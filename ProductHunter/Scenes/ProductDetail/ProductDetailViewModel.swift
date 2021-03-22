@@ -9,6 +9,7 @@ import UIKit
 
 protocol ProductDetailViewModelProtocol: ViewModel {
   func getProduct()
+  func sendReview(reviewText: String, rating: Int)
 }
 
 
@@ -27,6 +28,10 @@ final class ProductDetailViewModel: ViewModel {
 // MARK: - ProductDetailViewModelProtocol
 extension ProductDetailViewModel: ProductDetailViewModelProtocol {
   
+  func sendReview(reviewText: String, rating: Int) {
+    
+  }
+
   func getProduct() {
     productAPIService.fetchProductByID(product.id) { result in
       switch result {
@@ -45,7 +50,7 @@ extension ProductDetailViewModel: ProductDetailViewModelProtocol {
 }
 
 // MARK: - Private
-extension ProductDetailViewModel {
+private extension ProductDetailViewModel {
   
   func provideResponse() {
     let headerModel = self.getHeaderModel()

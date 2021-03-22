@@ -9,6 +9,7 @@ import UIKit
 
 protocol ProductDetailViewDelegate: UIViewController {
   func didPressBack()
+  func didSendReview(reviewText: String, rating: Int)
 }
 
 final class ProductDetailView: BaseView {
@@ -19,14 +20,13 @@ final class ProductDetailView: BaseView {
   
   private var stickyHeaderView: StickyReviewHeaderView!
   private var productImageView: UIImageView!
-  private var addReviewView: AddReviewView?
+  private var addReviewView: AddReviewView!
   private var tableView: UITableView!
   private var productDetailHeaderView: ProductDetailHeaderView!
   private var backButton: UIButton!
   
-  
-  private var stickyHeaderTopConstraint: NSLayoutConstraint!
   private var stickyHeaderBottomConstraint: NSLayoutConstraint!
+  private var addReviewViewTopConstraint: NSLayoutConstraint!
   
   private enum ViewTraits {
     static let productImageViewMinimumHeight: CGFloat = 260
@@ -57,10 +57,6 @@ extension ProductDetailView {
       self.productImageView.setCachedImage(from: url, placeholder: AssetHelper.productPlaceHolderImage, isTemplate: false)
       self.tableView.reloadData()
     }
-  }
-  
-  func provideDataSource() {
-    
   }
 }
 
@@ -115,6 +111,26 @@ extension ProductDetailView: UITableViewDelegate {
   }
 }
 
+// MARK: - AddReviewViewDelegate
+extension ProductDetailView: AddReviewViewDelegate {
+  
+  func didSendReview(reviewText: String, rating: Int) {
+    
+  }
+  
+  
+  func didPressOpenCloseButton(isExpanding: Bool) {
+    animateAddReview(isExpanding: isExpanding)
+  }
+  
+  func keyboardDidShow(isShowing: Bool, keyboardHeight: CGFloat) {
+    let constant = isShowing ? -(AddReviewView.totalContainerHeigt + keyboardHeight) : -AddReviewView.textViewTopPadding
+    addReviewViewTopConstraint.constant = constant
+    let option: UIView.AnimationOptions = isShowing ? .curveEaseIn : .curveEaseOut
+    UIView.animate(withDuration: 0.25, delay: 0, options: option, animations: layoutIfNeeded)
+  }
+}
+
 // MARK: - Selectors
 @objc private extension ProductDetailView {
   
@@ -132,6 +148,7 @@ private extension ProductDetailView {
     setupTableView()
     setupProductImageView()
     setupProductDetailHeaderView()
+    setupAddReviewView()
     setupStickyHeaderView()
     setupBackButton()
   }
@@ -145,7 +162,8 @@ private extension ProductDetailView {
   }
   
   func setupAddReviewView() {
-    
+    addReviewView = AddReviewView()
+    addReviewView.delegate = self
   }
   
   func setupStickyHeaderView() {
@@ -180,6 +198,12 @@ private extension ProductDetailView {
     let option: UIView.AnimationOptions = isExpanding ? .curveEaseIn : .curveEaseOut
     UIView.animate(withDuration: 0.25, delay: 0, options: option, animations: layoutIfNeeded)
   }
+  
+  func animateAddReview(isExpanding: Bool) {
+    addReviewViewTopConstraint.constant = isExpanding ? -(AddReviewView.totalContainerHeigt) : -AddReviewView.textViewTopPadding
+    let option: UIView.AnimationOptions = isExpanding ? .curveEaseIn : .curveEaseOut
+    UIView.animate(withDuration: 0.25, delay: 0, options: option, animations: layoutIfNeeded)
+  }
 }
 
 
@@ -190,10 +214,13 @@ private extension ProductDetailView {
     addSubviewWC(tableView)
     addSubviewWC(stickyHeaderView)
     addSubviewWC(backButton)
+    addSubviewWC(addReviewView!)
   }
   
   func setupConstraints() {
     stickyHeaderBottomConstraint = stickyHeaderView.bottomAnchor.constraint(equalTo: topAnchor)
+    addReviewViewTopConstraint = addReviewView.topAnchor.constraint(equalTo: bottomAnchor, constant: -AddReviewView.textViewTopPadding)
+    
     NSLayoutConstraint.activate([
       
       stickyHeaderView.heightAnchor.constraint(equalToConstant: ViewTraits.stickyHeaderHeight),
@@ -211,7 +238,11 @@ private extension ProductDetailView {
       tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
       tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
       
-      productImageView.heightAnchor.constraint(equalToConstant: ViewTraits.productImageViewMinimumHeight)
+      productImageView.heightAnchor.constraint(equalToConstant: ViewTraits.productImageViewMinimumHeight),
+      
+      addReviewViewTopConstraint,
+      addReviewView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+      addReviewView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
     ])
   }
 }

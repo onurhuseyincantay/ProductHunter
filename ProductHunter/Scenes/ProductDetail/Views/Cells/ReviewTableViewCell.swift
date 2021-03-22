@@ -75,6 +75,7 @@ private extension ReviewTableViewCell {
   
   func setupRatingView() {
     ratingView = RatingView()
+    ratingView.isUserInteractionEnabled = false
   }
   
   func setupReviewLabel() {
