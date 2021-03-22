@@ -50,7 +50,7 @@ extension ProductDetailViewModel: ProductDetailViewModelProtocol {
           return self.provideResponse()
         }
         self.product = product
-        
+        self.provideResponse()
       case .failure:
         self.provideResponse()
       }
@@ -69,7 +69,13 @@ private extension ProductDetailViewModel {
   }
   
   func getHeaderModel() -> ProductDetailHeaderDataModel {
-    let ratingAmount: CGFloat = product.reviews.map { CGFloat($0.rating) }.reduce(0, +) / CGFloat(product.reviews.count)
+    var ratingAmount: CGFloat
+    if product.reviews.count != 0 {
+      ratingAmount = product.reviews.map { CGFloat($0.rating) }.reduce(0, +) / CGFloat(product.reviews.count)
+    } else {
+      ratingAmount = 0
+    }
+   
     let name = "Product Name: \(product.name)"
     let price = "\(product.currency.isEmpty ? "$" : product.currency) \(product.price)"
     let description = "Description: \(product.description)"
