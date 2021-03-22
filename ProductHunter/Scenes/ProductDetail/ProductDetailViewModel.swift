@@ -8,31 +8,55 @@
 import UIKit
 
 protocol ProductDetailViewModelProtocol: ViewModel {
-  func getHeaderModel() -> ProductDetailHeaderDataModel
-  func getProductImageUrl() -> URL?
-  func getReviews() -> ReviewTableViewDataSource
+  func getProduct()
 }
 
 
 final class ProductDetailViewModel: ViewModel {
   weak var delegate: ProductDetailViewModelDelegate?
   
-  private let product: Product
+  private var product: Product
+  private let productAPIService: ProductApiServiceProtocol
   
-  init(product: Product) {
+  init(product: Product, productAPIService: ProductApiServiceProtocol) {
     self.product = product
+    self.productAPIService = productAPIService
   }
 }
 
+// MARK: - ProductDetailViewModelProtocol
 extension ProductDetailViewModel: ProductDetailViewModelProtocol {
   
-  func getHeaderModel() -> ProductDetailHeaderDataModel {
-    let ratingAmount: CGFloat = CGFloat(product.reviews.map { $0.rating }.reduce(0, +) / product.reviews.count)
-    return ProductDetailHeaderDataModel(name: product.name, price: "\(product.currency) \(product.price)", description: product.description, ratingAmount: ratingAmount)
+  func getProduct() {
+    productAPIService.fetchProductByID(product.id) { result in
+      switch result {
+        
+      case let .success(product):
+        guard product != self.product else {
+          return self.provideResponse()
+        }
+        self.product = product
+      case .failure:
+        break
+      }
+      self.provideResponse()
+    }
+  }
+}
+
+// MARK: - Private
+extension ProductDetailViewModel {
+  
+  func provideResponse() {
+    let headerModel = self.getHeaderModel()
+    let imageUrl = self.product.imgURL
+    let dataSource = self.getReviews()
+    self.delegate?.didUpdateProduct(with: dataSource, headerModel: headerModel, imageUrl: imageUrl)
   }
   
-  func getProductImageUrl() -> URL? {
-    product.imgURL
+  func getHeaderModel() -> ProductDetailHeaderDataModel {
+    let ratingAmount: CGFloat = product.reviews.map { CGFloat($0.rating) }.reduce(0, +) / CGFloat(product.reviews.count)
+    return ProductDetailHeaderDataModel(name: product.name, price: "\(product.currency) \(product.price)", description: product.description, ratingAmount: ratingAmount)
   }
   
   func getReviews() -> ReviewTableViewDataSource {

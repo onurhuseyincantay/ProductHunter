@@ -46,18 +46,21 @@ final class ProductDetailView: BaseView {
 // MARK: - Public
 extension ProductDetailView {
   
-  func provideDataModelForHeader(_ model: ProductDetailHeaderDataModel, imageUrl: URL?) {
-    productDetailHeaderView.provideDataModel(model)
-    guard let url = imageUrl else {
-      return
+  func prepareView(_ dataSource: ReviewTableViewDataSource, headerModel: ProductDetailHeaderDataModel, imageUrl: URL?) {
+    DispatchQueue.main.async {
+      self.reviewDataSource = dataSource
+      self.productDetailHeaderView.provideDataModel(headerModel)
+      self.stickyHeaderView.setText(headerModel.name)
+      guard let url = imageUrl else {
+        return self.tableView.reloadData()
+      }
+      self.productImageView.setCachedImage(from: url, placeholder: AssetHelper.productPlaceHolderImage, isTemplate: false)
+      self.tableView.reloadData()
     }
-    productImageView.setCachedImage(from: url, placeholder: AssetHelper.productPlaceHolderImage, isTemplate: false)
-    stickyHeaderView.setText(model.name)
   }
   
-  func provideDataSource(_ dataSource: ReviewTableViewDataSource) {
-    reviewDataSource = dataSource
-    tableView.reloadData()
+  func provideDataSource() {
+    
   }
 }
 

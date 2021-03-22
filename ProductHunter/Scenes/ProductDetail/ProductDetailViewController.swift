@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ProductDetailViewModelDelegate: UIViewController {
-  
+  func didUpdateProduct(with dataSource: ReviewTableViewDataSource, headerModel: ProductDetailHeaderDataModel, imageUrl: URL?)
 }
 
 final class ProductDetailViewController: BaseViewController, ViewControllerProtocol {
@@ -37,14 +37,16 @@ final class ProductDetailViewController: BaseViewController, ViewControllerProto
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    provideDataModelForHeader()
-    provideDataSource()
+    viewModel.getProduct()
   }
 }
 
 // MARK: - ProductDetailViewModelDelegate
 extension ProductDetailViewController: ProductDetailViewModelDelegate {
   
+  func didUpdateProduct(with dataSource: ReviewTableViewDataSource, headerModel: ProductDetailHeaderDataModel, imageUrl: URL?) {
+    mainView.prepareView(dataSource, headerModel: headerModel, imageUrl: imageUrl)
+  }
 }
 
 // MARK: - ProductDetailViewDelegate
@@ -52,20 +54,5 @@ extension ProductDetailViewController: ProductDetailViewDelegate {
   
   func didPressBack() {
     navigationController?.popViewController(animated: true)
-  }
-}
-
-
-private extension ProductDetailViewController {
-  
-  func provideDataModelForHeader() {
-    let model = viewModel.getHeaderModel()
-    let imageUrl = viewModel.getProductImageUrl()
-    mainView.provideDataModelForHeader(model, imageUrl: imageUrl)
-  }
-  
-  func provideDataSource() {
-    let dataSource = viewModel.getReviews()
-    mainView.provideDataSource(dataSource)
   }
 }

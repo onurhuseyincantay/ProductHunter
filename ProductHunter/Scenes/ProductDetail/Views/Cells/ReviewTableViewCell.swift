@@ -38,9 +38,12 @@ final class ReviewTableViewCell: UITableViewCell {
 extension ReviewTableViewCell {
   
   func prepareCell(with model: ReviewTableViewCellDataModel) {
-    containerView.backgroundColor = UIColor(named: model.getBackgroundColorName())?.withAlphaComponent(0.1)
+    if let type = RatingColorType(rawValue: model.rating) {
+      containerView.backgroundColor = type.getBackgroundColor().withAlphaComponent(0.1)
+    }
     localeLabel.text = model.getLocaleFlag()
     reviewLabel.text = model.review
+    ratingView.updateRating(amount: CGFloat(model.rating))
   }
 }
 
@@ -72,7 +75,6 @@ private extension ReviewTableViewCell {
   
   func setupRatingView() {
     ratingView = RatingView()
-    ratingView.backgroundColor = .orange
   }
   
   func setupReviewLabel() {

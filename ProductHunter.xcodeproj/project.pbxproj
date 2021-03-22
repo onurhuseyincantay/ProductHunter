@@ -14,6 +14,7 @@
 		8F13692F26064D61006075A1 /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F13692E26064D61006075A1 /* UIView+Additions.swift */; };
 		8F13693526064EC8006075A1 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F13693426064EC8006075A1 /* Identifiable.swift */; };
 		8F13693C26064F6C006075A1 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F13693B26064F6C006075A1 /* ProductTableViewCell.swift */; };
+		8F1C4F812609216600097D66 /* RatingColorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C4F802609216600097D66 /* RatingColorType.swift */; };
 		8F2165772607246F0071AD88 /* AddReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2165762607246F0071AD88 /* AddReviewView.swift */; };
 		8F27BA5526065656002859EC /* UIImageView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F27BA5426065656002859EC /* UIImageView+Additions.swift */; };
 		8F27BA5A260656C9002859EC /* AssetHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F27BA59260656C9002859EC /* AssetHelper.swift */; };
@@ -72,6 +73,7 @@
 		8F13692E26064D61006075A1 /* UIView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
 		8F13693426064EC8006075A1 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		8F13693B26064F6C006075A1 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		8F1C4F802609216600097D66 /* RatingColorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingColorType.swift; sourceTree = "<group>"; };
 		8F2165762607246F0071AD88 /* AddReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewView.swift; sourceTree = "<group>"; };
 		8F27BA5426065656002859EC /* UIImageView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Additions.swift"; sourceTree = "<group>"; };
 		8F27BA59260656C9002859EC /* AssetHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetHelper.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				8F8D2DDA26074332006B2E47 /* ProductDetailHeaderDataModel.swift */,
 				8F8D2DDF26074365006B2E47 /* ProductDetailSectionType.swift */,
 				8F8D2DF2260753A9006B2E47 /* ReviewTableViewCellDataModel.swift */,
+				8F1C4F802609216600097D66 /* RatingColorType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				8F13691B26064475006075A1 /* NetworkError.swift in Sources */,
 				8FC879A9260617BA00320564 /* BaseView.swift in Sources */,
 				8F13691026063D8F006075A1 /* NetworkTarget.swift in Sources */,
+				8F1C4F812609216600097D66 /* RatingColorType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@ import Foundation
 
 enum ProductTarget {
   case product
+  case productByID(_ id: String)
   case addProduct(name: String, description: String, imageUrl: String?)
 }
 
@@ -20,7 +21,8 @@ extension ProductTarget: NetworkTarget {
     case .product,
          .addProduct:
       return "product"
-    
+    case let .productByID(id):
+      return "product/\(id)"
     }
   }
   
@@ -28,14 +30,16 @@ extension ProductTarget: NetworkTarget {
     switch self {
     case .addProduct:
       return .post
-    case .product:
+    case .product,
+         .productByID:
       return .get
     }
   }
   
   var workType: WorkType {
     switch self {
-    case .product:
+    case .product,
+         .productByID:
       return .requestPlain
       
     case let .addProduct(name, description, imageUrl):

@@ -35,6 +35,7 @@ extension ProductDetailHeaderView {
     nameLabel.text = model.name
     descriptionLabel.text = model.description
     priceLabel.text = model.price
+    ratingView.updateRating(amount: model.ratingAmount)
   }
 }
 
@@ -79,7 +80,6 @@ private extension ProductDetailHeaderView {
   
   func setupRatingView() {
     ratingView = RatingView()
-    ratingView.backgroundColor = .red
   }
 }
 

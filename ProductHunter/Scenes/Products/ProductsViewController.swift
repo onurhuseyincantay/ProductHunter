@@ -45,7 +45,7 @@ extension ProductsViewController: ProductsViewDelegate {
   
   func didSelectItem(at indexPath: IndexPath) {
     let product = viewModel.selectItem(at: indexPath)
-    let viewController = ProductDetailViewController(view: ProductDetailView(), viewModel: ProductDetailViewModel(product: product))
+    let viewController = ProductDetailViewController(view: ProductDetailView(), viewModel: ProductDetailViewModel(product: product, productAPIService: ProductApiService()))
     navigationController?.pushViewController(viewController, animated: true)
   }
   

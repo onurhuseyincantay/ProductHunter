@@ -9,10 +9,10 @@ import UIKit
 
 final class AddReviewView: BaseView {
   
-  private var titleLabel: UILabel!
-  private var productNameLabel: UILabel!
+  private var containerView: UIView!
   private var ratingView: UIView!
   private var textView: UITextView!
+  private var openCloseButton: UIButton!
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -29,6 +29,16 @@ private extension AddReviewView {
   func setupUIComponents() {
     
   }
+  
+  func setupContainerView() {
+    containerView = UIView()
+    containerView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+    containerView.layer.cornerRadius = 15
+    containerView.clipsToBounds = true
+    containerView.backgroundColor = ColorHelper.backgroundWhite
+  }
+  
+  
 }
 
 // MARK: - Constraint

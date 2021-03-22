@@ -48,7 +48,7 @@ extension ProductsViewModel: ProductsViewModelProtocol {
       filteredList = nil
       return generateProductTableViewCellModel(from: productList)
     }
-    filteredList = productList.filter { $0.id?.lowercased().range(of: id.lowercased()) != nil }
+    filteredList = productList.filter { $0.id.lowercased().range(of: id.lowercased()) != nil }
     return generateProductTableViewCellModel(from: filteredList!)
   }
   
