@@ -14,6 +14,7 @@ final class ProductDetailViewModelTests: XCTestCase {
   private var reviewAPIServiceSpy: ReviewAPIServiceSpy!
   private var viewControllerSpy: ProductDetailViewModelDelegateSpy!
   private let testProduct: Product = .init(currency: "", price: 123, id: "someUDID", name: "Some name", description: "Description", imgURL: nil, reviews: [])
+  
   override func setUp() {
     super.setUp()
     productAPIServiceSpy = ProductAPIServiceSpy()
