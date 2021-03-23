@@ -38,8 +38,8 @@ extension ProductsViewModel: ProductsViewModelProtocol {
     cleanDataSource()
     productAPIService.fetchAllProducts { result in
       switch result {
-      case .failure(let error):
-        print(error.localizedDescription)
+      case .failure:
+        self.delegate?.didFailForGettingProducts()
         
       case .success(let productList):
         self.productList = productList

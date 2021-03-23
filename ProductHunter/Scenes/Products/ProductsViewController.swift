@@ -9,6 +9,7 @@ import UIKit
 
 protocol ProductsViewModelDelegate: UIViewController {
   func didGetProducts(dataSource: [ProductTableViewCellModel])
+  func didFailForGettingProducts()
 }
 
 final class ProductsViewController: BaseViewController, ViewControllerProtocol {
@@ -65,6 +66,19 @@ extension ProductsViewController: ProductsViewModelDelegate {
   func didGetProducts(dataSource: [ProductTableViewCellModel]) {
     DispatchQueue.main.async {
       self.mainView.provideDataSource(dataSource)
+    }
+  }
+  
+  func didFailForGettingProducts() {
+    DispatchQueue.main.async {
+      let title = "Failed To get Products"
+      let description = "Ooops something went wrong :("
+      let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
+      alert.addAction(.init(title: "Cancel", style: .destructive))
+      alert.addAction(.init(title: "Retry", style: .default, handler: { _ in
+        self.viewModel.fetchAllProducts()
+      }))
+      self.present(alert, animated: true)
     }
   }
 }

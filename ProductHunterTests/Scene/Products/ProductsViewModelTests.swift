@@ -40,6 +40,13 @@ extension ProductsViewModelTests {
     fetchAllProducts()
   }
   
+  func testFetchAllProductsFailure() {
+    viewControllerSpy.didFailForGettingProductsExpectation = expectation(description: "didFailForGettingProductsExpectation")
+    productAPIServiceSpy.isFailingActive = true
+    sut.fetchAllProducts()
+    wait(for: [viewControllerSpy.didFailForGettingProductsExpectation], timeout: 0.1)
+  }
+  
   func testSelectItemWithoutFilteredList() {
     fetchAllProducts()
     let indexPath: IndexPath = .init(row: 0, section: 0)
